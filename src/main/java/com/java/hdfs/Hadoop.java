@@ -53,7 +53,9 @@ public class Hadoop {
 			 * 2) 정제 요청 : mapReduser()
 			 * 3) 성공 시 결과 받기 : resultData()
 			 **************************************************/
-			fileCopy("1987.csv");
+			
+			
+			fileCopy(fileName);
 			
 			try {
 				mapReduser();
