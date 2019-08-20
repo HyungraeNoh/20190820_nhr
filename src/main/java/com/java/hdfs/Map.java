@@ -9,9 +9,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 //Mapper<(입력키<행번호> : 입력값<행의글자>) , (출력키<글자> : 출력값<1>)>
 public class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
-	
-	private String uniqueCarrier;
-	private int ActualElapsedTime = 0;
+
 	// 출력 키 변수
 	protected Text textKey = new Text();
 	// 출력 값 변수
@@ -23,11 +21,14 @@ public class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
 		String[] values = value.toString().split(",");
 		
 		// 출력 키에 넣을 문자열 변수
+		int cancel = Integer.parseInt(values[21]);
 		String strKey = values[8];
-		// 출력 키에 문자열 변수 적용
-		textKey.set(strKey);
-		// 전체 결과 출력하기
-		context.write(textKey, intValue);
+		if(cancel == 0) {
+			// 출력 키에 문자열 변수 적용
+			textKey.set(strKey);
+			// 전체 결과 출력하기
+			context.write(textKey, intValue);
+		}
 	}
 	
 }

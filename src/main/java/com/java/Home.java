@@ -1,6 +1,7 @@
 package com.java;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,9 +34,16 @@ public class Home extends HttpServlet {
 		} else {
 			// 정제 요청 대상 파일명 값이 있으면 HDFS 실행 요청 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			Hadoop hdfs = new Hadoop();
-			hdfs.run(file_name);
+			HashMap<String, Object> shit = hdfs.run(file_name);
+			
+			if((int)shit.get("status") == 2) {
+				req.setAttribute("result", shit.get("result"));
+			} else if((int)shit.get("status") == 1) {
+				req.setAttribute("result", "정제 오류");
+			} else if((int)shit.get("status") == 0) {
+				req.setAttribute("result", "접속 오류");
+			}
 			req.setAttribute("file_name", file_name);
-			req.setAttribute("result", "완료");
 			RequestDispatcher rd = req.getRequestDispatcher(viewPath("result"));
 			rd.forward(req, res);
 		}
