@@ -35,6 +35,7 @@ public class Home extends HttpServlet {
 			Hadoop hdfs = new Hadoop();
 			hdfs.run(file_name);
 			req.setAttribute("file_name", file_name);
+			req.setAttribute("result", "완료");
 			RequestDispatcher rd = req.getRequestDispatcher(viewPath("result"));
 			rd.forward(req, res);
 		}

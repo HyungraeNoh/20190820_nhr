@@ -37,7 +37,7 @@ public class Hadoop {
 	protected FileSystem localSystem = null;
 	
 	// Hadoop 외부 요청 메소드
-	public HashMap<String, Object> run(String fileName){
+	public HashMap<String, Object> run(String fileName)  {
 		System.out.println("Hadoop.run() >> Start");
 		resultMap = new HashMap<String, Object>();
 		int status = 0;
@@ -55,25 +55,27 @@ public class Hadoop {
 			 * 3) 성공 시 결과 받기 : resultData()
 			 **************************************************/
 			
-			
-			fileCopy(fileName);
-			
-			try {
-				mapReduser();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			boolean fc = fileCopy(fileName);
+			if(fc) {
+				boolean mr;
+				try {
+					mr = mapReduser();
+					if(mr) {
+						resultData();
+						status = 2;
+					} else {
+						status = 1;
+					}
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			} else {
+				status = 0;
 			}
-			
-			try {
-				resultData();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
 		}else {
 			System.out.println("실패");
 		}
@@ -137,6 +139,9 @@ public class Hadoop {
 	// Hadoop 정제 요청 메소드
 	protected boolean mapReduser() throws ClassNotFoundException, IOException, InterruptedException {
 		System.out.println("Hadoop.mapReduser() >> Start");
+		if(hadoopSystem.exists(new Path("/output"))) {
+			hadoopSystem.delete(new Path("/output"), true);
+		}
 		// 정제 작업 객체 변수
 		Job job = Job.getInstance(hadoopConf, "test");
 		// 실행 대상 클래스 지정

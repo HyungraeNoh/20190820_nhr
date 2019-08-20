@@ -19,19 +19,7 @@ public class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
 	
 	@Override
 	protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, IntWritable>.Context context) throws IOException, InterruptedException {
-		/*
-		// 출력 키에 넣을 문자열 변수
-//		String strKey = "";
-		String[] colums = value.toString().split(",");
-		uniqueCarrier = colums[8];
-		ActualElapsedTime = Integer.parseInt(colums[11]);
 		
-		intValue.set(ActualElapsedTime);
-		// 출력 키에 문자열 변수 적용
-		textKey.set(uniqueCarrier);
-		// 전체 결과 출력하기
-		context.write(textKey, intValue);
-		*/
 		String[] values = value.toString().split(",");
 		
 		// 출력 키에 넣을 문자열 변수
