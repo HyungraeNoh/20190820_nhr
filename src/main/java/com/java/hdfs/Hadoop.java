@@ -53,6 +53,24 @@ public class Hadoop {
 			 * 2) 정제 요청 : mapReduser()
 			 * 3) 성공 시 결과 받기 : resultData()
 			 **************************************************/
+			fileCopy("1987.csv");
+			
+			try {
+				mapReduser();
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			
+			try {
+				resultData();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		resultMap.put("status", status);
 		System.out.println("Hadoop.run() >> End");
