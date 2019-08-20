@@ -36,11 +36,11 @@ public class Home extends HttpServlet {
 			Hadoop hdfs = new Hadoop();
 			HashMap<String, Object> shit = hdfs.run(file_name);
 			
-			if((int)shit.get("status") == 2) {
+			if((Integer)shit.get("status") == 2) {
 				req.setAttribute("result", shit.get("result"));
-			} else if((int)shit.get("status") == 1) {
+			} else if((Integer)shit.get("status") == 1) {
 				req.setAttribute("result", "정제 오류");
-			} else if((int)shit.get("status") == 0) {
+			} else if((Integer)shit.get("status") == 0) {
 				req.setAttribute("result", "접속 오류");
 			}
 			req.setAttribute("file_name", file_name);
