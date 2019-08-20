@@ -20,20 +20,14 @@ public class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
 	@Override
 	protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, IntWritable>.Context context) throws IOException, InterruptedException {
 		// 출력 키에 넣을 문자열 변수
-		String strKey = "";
+//		String strKey = "";
+		String[] colums = value.toString().split(",");
+		uniqueCarrier = colums[8];
+		ActualElapsedTime = Integer.parseInt(colums[11]);
 		
-		try {
-			String[] colums = value.toString().split(",");
-			uniqueCarrier = colums[8];
-			if(!("NA").equals(colums[11])) {
-				ActualElapsedTime = Integer.parseInt(colums[11]);
-			} 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		intValue.set(ActualElapsedTime);
 		// 출력 키에 문자열 변수 적용
-		textKey.set(strKey);
+		textKey.set(uniqueCarrier);
 		// 전체 결과 출력하기
 		context.write(textKey, intValue);
 	}

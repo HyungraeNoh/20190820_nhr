@@ -21,7 +21,7 @@ public class Hadoop {
 	// local 및 hadoop 설정 객체 
 	protected Configuration hadoopConf = null;
 	protected Configuration localConf = null;
-	// hadoop 접속 주소 (hadoop server ip 수정 할것) <<<<<<<<<<<<<<<<<<
+	// hadoop 접속 주소 (hadoop server ip 수정 할것) <<<<<<<<<<<<<<<<<<http://localhost:8080
 	protected final String URL = "hdfs://192.168.3.104:9000";
 	protected final String LOCAL = "/root/data/";
 	// hadoop 정제 대상 경로 / 처리 결과 저장 경로 및 파일

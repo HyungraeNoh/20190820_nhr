@@ -30,7 +30,7 @@ public class Home extends HttpServlet {
 			res.sendRedirect("/Home");
 		} else {
 			// 정제 요청 대상 파일명 값이 있으면 HDFS 실행 요청 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-			req.setAttribute("1987.csv", file_name);
+			req.setAttribute("result", file_name);
 			RequestDispatcher rd = req.getRequestDispatcher(viewPath("result"));
 			rd.forward(req, res);
 		}
