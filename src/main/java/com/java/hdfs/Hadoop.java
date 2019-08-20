@@ -21,8 +21,9 @@ public class Hadoop {
 	// local 및 hadoop 설정 객체 
 	protected Configuration hadoopConf = null;
 	protected Configuration localConf = null;
-	// hadoop 접속 주소 (hadoop server ip 수정 할것) <<<<<<<<<<<<<<<<<<http://localhost:8080
+	// hadoop 접속 주소 (hadoop server ip 수정 할것) <<<<<<<<<<<<<<<<<< hdfs://192.168.3.104:9000
 	protected final String URL = "hdfs://192.168.3.104:9000";
+	//protected final String LOCAL = "C:\\Users\\GD7\\Desktop\\data\\";
 	protected final String LOCAL = "/root/data/";
 	// hadoop 정제 대상 경로 / 처리 결과 저장 경로 및 파일
 	protected final String INPUT = "/input/";
@@ -59,12 +60,12 @@ public class Hadoop {
 			
 			try {
 				mapReduser();
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 			
 			try {
@@ -73,6 +74,8 @@ public class Hadoop {
 				e.printStackTrace();
 			}
 			
+		}else {
+			System.out.println("실패");
 		}
 		resultMap.put("status", status);
 		System.out.println("Hadoop.run() >> End");
