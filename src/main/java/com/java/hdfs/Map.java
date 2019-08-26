@@ -26,7 +26,5 @@ public class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
 		if(parser.getDepartureDealyTime() <= 150000) {
 			context.write(textKey, intValue);
 		}
-		
 	}
-	
 }

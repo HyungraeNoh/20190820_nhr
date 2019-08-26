@@ -46,6 +46,7 @@ public class Home extends HttpServlet {
 			req.setAttribute("file_name", file_name);
 			RequestDispatcher rd = req.getRequestDispatcher(viewPath("result"));
 			rd.forward(req, res);
+			
 		}
 		System.out.println("Home.doPost() >> End");
 	}

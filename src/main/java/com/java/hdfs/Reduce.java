@@ -20,6 +20,7 @@ public class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
 		for(IntWritable v : value) {
 			sum += v.get();
 		}
+		
 		result.set(sum);
 		// 전체 결과값을 출력하기
 		context.write(key, result);
